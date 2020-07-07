@@ -1,0 +1,20 @@
+[
+  {
+    "flightId": "flightId01",
+    "height": "1000",
+    "ownerId": "ownerId01",
+    "startLocation": "44,1233:46,123 ",
+    "endLocation": "44,1233 :46,123 ",
+    "time": "2020-01-01 12:00:00",
+    "uavId": "uavId01"
+  },
+  {
+    "flightId": "flightId01",
+    "height": "1000",
+    "ownerId": "ownerId01",
+    "startLocation": "44,1233:46,123 ",
+    "endLocation": "44,1233 :46,123 ",
+    "time": "2020-01-01 12:00:00",
+    "uavId": "uavId01"
+  }
+]
