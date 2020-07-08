@@ -4,7 +4,7 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
 
-class ListFlight extends React.Component {
+class ListFlightHistoric extends React.Component {
 	constructor(props) {
     super(props);
     this.state = {
@@ -29,13 +29,13 @@ class ListFlight extends React.Component {
       {
         headerName: "Start Date & Time", field: "time"
       }],
-     rowData:[],
+     
     }
   }
 
  componentDidMount() {
-   fetch('http://localhost:9000/api/flightplan')
-   .then(async response => {
+   fetch('http://localhost:9000/api/flightplan?historicData=true')
+ .then(async response => {
             const data = await response.json();
 
             // check for error response
@@ -53,14 +53,14 @@ class ListFlight extends React.Component {
         });
  
  }
-
 	render() {
 	return (
 
 	<div
         className="ag-theme-alpine"
         style={{
-        	marginTop:'50px',
+        marginTop:'50px',
+
         height: '720px',
         width: '1000px' }}
       >
@@ -76,4 +76,4 @@ class ListFlight extends React.Component {
 }
 
 
-export default ListFlight;
+export default ListFlightHistoric;

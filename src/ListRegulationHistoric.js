@@ -4,21 +4,19 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
 
-class ListFlight extends React.Component {
+class ListRegulationHistoric extends React.Component {
 	constructor(props) {
     super(props);
     this.state = {
       columnDefs: [{
-        headerName: "UAV ID", field: "uavId"
+        headerName: "Attribute Name", field: "attributeName"
       }, {
-        headerName: "Height", field: "height"
+        headerName: "Threshold", field: "threshold"
       }, 
       {
-        headerName: "Flight ID", field: "flightId"
-      },
-      {
-        headerName: "Owner ID", field: "ownerId"
-      },
+        headerName: "Operation", field: "operation"
+      }, 
+      
       {
         headerName: "Stard Location", field: "startLocation"
       },
@@ -29,13 +27,15 @@ class ListFlight extends React.Component {
       {
         headerName: "Start Date & Time", field: "time"
       }],
-     rowData:[],
+     
+     
     }
   }
 
+
  componentDidMount() {
-   fetch('http://localhost:9000/api/flightplan')
-   .then(async response => {
+   fetch('https://localhost:9000/api/airspace?historicData=true')
+ .then(async response => {
             const data = await response.json();
 
             // check for error response
@@ -60,10 +60,11 @@ class ListFlight extends React.Component {
 	<div
         className="ag-theme-alpine"
         style={{
-        	marginTop:'50px',
-        height: '720px',
+        marginTop:'50px',
+ height: '720px',
         width: '1000px' }}
       >
+     
         <AgGridReact
           columnDefs={this.state.columnDefs}
           rowData={this.state.rowData}>
@@ -76,4 +77,4 @@ class ListFlight extends React.Component {
 }
 
 
-export default ListFlight;
+export default ListRegulationHistoric;

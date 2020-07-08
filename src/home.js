@@ -7,7 +7,8 @@ const homestyle = {
       padding: "10px",
       fontFamily: "Arial",
       marginTop: "50px",
-      align:"centre"
+      marginLeft:"200px",
+      textAlign:"centre"
     };
 
 class Home extends React.Component {
@@ -16,7 +17,8 @@ class Home extends React.Component {
 
 			<div style={homestyle} >
 				      <img src="https://docs.televes.com/web/quienes-somos/corporacion/corporation.png" />
-				      <h1> DLT-based UAV Management System</h1>
+				      <h1 > SkyFall</h1>
+				      <h2> DLT-based UAV Management System</h2>
 
 			</div>
 		)

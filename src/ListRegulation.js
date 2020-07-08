@@ -28,13 +28,30 @@ class ListRegulation extends React.Component {
         headerName: "Start Date & Time", field: "time"
       }],
      
+     
     }
   }
 
+
  componentDidMount() {
-   fetch('file:///Users/riyasharma/Desktop/flightplan/my-app/src/sample.json')
- .then(result => result.json())
- .then(rowData => this.setState({rowData}))
+   fetch('http://localhost:9000/api/airspace')
+ .then(async response => {
+            const data = await response.json();
+
+            // check for error response
+            if (!response.ok) {
+                // get error message from body or default to response statusText
+                const error = (data && data.message) || response.statusText;
+                return Promise.reject(error);
+            }
+
+            this.setState({ rowData: data })
+        })
+        .catch(error => {
+            this.setState({ errorMessage: error.toString() });
+            console.error('There was an error!', error);
+        });
+ 
  }
 
 	render() {
@@ -43,9 +60,12 @@ class ListRegulation extends React.Component {
 	<div
         className="ag-theme-alpine"
         style={{
-        height: '600px',
-        width: 'auto' }}
+         marginTop:'50px',
+
+        height: '720px',
+        width: '1000px' }}
       >
+     
         <AgGridReact
           columnDefs={this.state.columnDefs}
           rowData={this.state.rowData}>

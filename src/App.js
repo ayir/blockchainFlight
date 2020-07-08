@@ -6,6 +6,8 @@ import ListFlight from './ListFlight';
 import SubmitFlight from './submitflight';
 import ListRegulation from './ListRegulation';
 import SubmitRegulation from './SubmitRegulation';
+import ListFlightHistoric from './ListFlightHistoric';
+import ListRegulationHistoric from './ListRegulationHistoric'
 
 import './App.css';
 
@@ -14,7 +16,7 @@ const mystyle = {
       backgroundColor: "transparent",
       padding: "10px",
       fontFamily: "Arial",
-      marginLeft: "500px",
+      marginLeft: "300px",
     };
 
 class App extends React.Component {
@@ -23,8 +25,10 @@ class App extends React.Component {
 		home: true,
 		flight_submit: false,
 		flight_list: false,
+		flight_list_historic:false,
 		regulation_submit:false,
 		regulation_list:false,
+		regulation_list_historic:false
 	}
 
 	render() {
@@ -34,18 +38,24 @@ class App extends React.Component {
       <SideNav
     onSelect={(selected) => {
         if (selected === "home") {
-        	this.setState({home: true, flight_list: false, flight_submit: false, regulation_submit: false,regulation_list:false});
+        	this.setState({home: true, flight_list: false, flight_submit: false, regulation_submit: false,regulation_list:false,flight_list_historic:false,regulation_list_historic:false});
         } else if (selected === "flightplan/submit") {
-        	this.setState({home: false, flight_list: false, flight_submit: true, regulation_submit: false,regulation_list:false})
+        	this.setState({home: false, flight_list: false, flight_submit: true, regulation_submit: false,regulation_list:false,flight_list_historic:false,regulation_list_historic:false})
         }
         else if (selected === "flightplan/list") {
-        	this.setState({home: false, flight_list: true, flight_submit: false, regulation_submit: false,regulation_list:false})
+        	this.setState({home: false, flight_list: true, flight_submit: false, regulation_submit: false,regulation_list:false,flight_list_historic:false,regulation_list_historic:false})
         }
         else if (selected === "regulation/submit") {
-        	this.setState({home: false, flight_list: false, flight_submit: false, regulation_submit: true,regulation_list:false})
+        	this.setState({home: false, flight_list: false, flight_submit: false, regulation_submit: true,regulation_list:false,flight_list_historic:false,regulation_list_historic:false})
         }
         else if (selected === "regulation/list") {
-        	this.setState({home: false, flight_list: false, flight_submit: false, regulation_submit: false,regulation_list:true})
+        	this.setState({home: false, flight_list: false, flight_submit: false, regulation_submit: false,regulation_list:true,flight_list_historic:false,regulation_list_historic:false})
+        }
+        else if (selected === "regulation/list_historic") {
+        	this.setState({home: false, flight_list: false, flight_submit: false, regulation_submit: false,regulation_list:false,flight_list_historic:false,regulation_list_historic:true})
+        }
+        else if (selected === "flightplan/list_historic") {
+        	this.setState({home: false, flight_list: false, flight_submit: false, regulation_submit: false,regulation_list:false,flight_list_historic:true,regulation_list_historic:false})
         }
     }}>
     <SideNav.Toggle />
@@ -75,6 +85,12 @@ class App extends React.Component {
                     List Flight Plans
                 </NavText>
             </NavItem>
+             <NavItem eventKey="flightplan/list_historic">
+                <NavText>
+                    List Historic Flight Plans
+                </NavText>
+            </NavItem>
+
         </NavItem>
         <NavItem eventKey="rules">
             <NavIcon>
@@ -93,6 +109,11 @@ class App extends React.Component {
                     List Regulations
                 </NavText>
             </NavItem>
+            <NavItem eventKey="regulation/list_historic">
+                <NavText>
+                    List Historic Regulations
+                </NavText>
+            </NavItem>
         </NavItem>
     </SideNav.Nav>
 </SideNav>
@@ -103,6 +124,8 @@ class App extends React.Component {
  		{ this.state.flight_list && <ListFlight/>}
  		{ this.state.regulation_list && <ListRegulation/>}
  		{ this.state.regulation_submit && <SubmitRegulation/>}
+ 		{ this.state.regulation_list_historic && <ListRegulationHistoric/>}
+ 		{ this.state.flight_list_historic && <ListFlightHistoric/>}
       </div>
     </div>
   );
