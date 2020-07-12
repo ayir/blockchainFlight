@@ -3,12 +3,7 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
-const headingstyle={
-    fontFamily: 'Arial Unicode MS, Lucida Sans Unicode, Code2000, sans-serif',
-    fontSize :'20px',
-    marginBottom : '20px',
- textAlign: 'center'
-}
+//list flight component
 class ListFlight extends React.Component {
 	constructor(props) {
     super(props);
@@ -25,7 +20,7 @@ class ListFlight extends React.Component {
         headerName: "Owner ID", field: "ownerId"
       },
       {
-        headerName: "Stard Location", field: "startLocation"
+        headerName: "Start Location", field: "startLocation"
       },
       {
         headerName: "End Location", field: "endLocation"
@@ -37,6 +32,8 @@ class ListFlight extends React.Component {
      rowData:[],
     }
   }
+
+  // API call to fetch data
 
  componentDidMount() {
    fetch('http://localhost:9000/api/flightplan')
@@ -59,10 +56,12 @@ class ListFlight extends React.Component {
 
  }
 
+
+//render table component
 	render() {
 	return (
     <div>
-<div style={headingstyle}> Flight Plans</div>
+<div className='headingstyle'> Flight Plans</div>
 	<div
         className="ag-theme-alpine"
         style={{
